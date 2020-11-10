@@ -1,10 +1,12 @@
-input="/install-config.cfg"
-declare -a cfg
+#input="/install-config.cfg"
+#declare -a cfg
 
-while read line
-do
-  cfg += line
-done < "$input"
+#while read line
+#do
+#  cfg += line
+#done < "$input"
+
+#$boot_part $root_part $root_pass $user $user_pass $hostname
 
 ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
 hwclock --systohc
@@ -21,9 +23,9 @@ echo ${cfg[5]} >> /etc/hostname
 
 cat "127.0.0.1	localhost" >> /etc/hosts
 cat "::1		localhost" >> /etc/hosts
-cat "127.0.1.1	${cfg[5]}.localdomain	${cfg[5]}" >> /etc/hosts
+cat "127.0.1.1	$6.localdomain	$6" >> /etc/hosts
 
-echo ${cfg[2]}\n${cfg[2]}| passwd
+echo $1\n$1| passwd
 
-useradd -m ${cfg[3]}
-echo ${cfg[4]}\n${cfg[4]}| passwd
+useradd -m $2
+echo $3\n$3| passwd

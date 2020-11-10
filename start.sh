@@ -1,12 +1,3 @@
-#pacstrap_pkgs = (
-#    "base",
-#    "linux-firmware",
-#    "linux-lts",
-#    "linux-lts-headers",
-#    "vim",
-#    "git"
-#)
-
 declare -a pacstrap_pkgs
 input = "packages.install"
 while read line
@@ -14,20 +5,20 @@ do
   cfg += line
 done < "$input"
 
-read -p 'boot partition name: ' $boot_part
-read -p 'root partition name: ' $root_part
-read -sp 'root password: ' $root_pass
-read -p 'user name: ' $user
-read -sp '$user password: ' $user_pass
-read -p 'hostname: ' $hostname
+read -p "\nboot partition name: " $boot_part
+read -p "\nroot partition name: " $root_part
+read -sp "\nroot password: " $root_pass
+read -p "\nuser name: " $user
+read -sp "\n$user password: " $user_pass
+read -p "\nhostname: " $hostname
 
-touch install-config.cfg
-echo "$boot_part" >> install-config.cfg
-echo "$root_part" >> install-config.cfg
-echo "$root_pass" >> install-config.cfg
-echo "$user" >> install-config.cfg
-echo "$user_pass" >> install-config.cfg
-echo "$hostname" >> install-config.cfg
+#touch install-config.cfg
+#echo "\n$boot_part" >> install-config.cfg
+#echo "\n$root_part" >> install-config.cfg
+#echo "\n$root_pass" >> install-config.cfg
+#echo "\n$user" >> install-config.cfg
+#echo "\n$user_pass" >> install-config.cfg
+#echo "\n$hostname" >> install-config.cfg
 
 timedatectl set-ntp true
 
@@ -36,10 +27,10 @@ pacstrap /mnt ${pacstrap_pkgs[*]} # installs all required packages
 genfstab -U /mnt >> /mnt/etc/fstab
 
 cp install.sh /mnt/install.sh
-cp install-config.cfg /mnt/install-config.cfg
-arch-chroot /mnt /install.sh
+#cp install-config.cfg /mnt/install-config.cfg
+arch-chroot /mnt /install.sh $boot_part $root_part $root_pass $user $user_pass $hostname
 rm /mnt/install.sh
-rm /mnt/install-config.cfg
+#rm /mnt/install-config.cfg
 
 umount -R /mnt
 reboot

@@ -1,0 +1,7 @@
+base
+base-devel
+linux-firmware
+linux-lts
+linux-lts-headers
+vim
+git

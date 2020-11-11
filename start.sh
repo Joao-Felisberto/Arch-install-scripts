@@ -5,12 +5,12 @@ do
   cfg += line
 done < "$input"
 
-read -p "\nboot partition name: " $boot_part
-read -p "\nroot partition name: " $root_part
-read -sp "\nroot password: " $root_pass
-read -p "\nuser name: " $user
-read -sp "\n$user password: " $user_pass
-read -p "\nhostname: " $hostname
+read -p "boot partition name: " $boot_part
+read -p "root partition name: " $root_part
+read -sp "root password: " $root_pass
+read -p "user name: " $user
+read -sp "$user password: " $user_pass
+read -p "hostname: " $hostname
 
 #touch install-config.cfg
 #echo "\n$boot_part" >> install-config.cfg

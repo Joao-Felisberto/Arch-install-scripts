@@ -22,13 +22,20 @@ read -p "\nhostname: " $hostname
 
 timedatectl set-ntp true
 
+mkfs.ext4 $root_part
+mkfs.fat -F32 $boot_part
+mount /mnt $root_part
+mkdir /mnt/boot
+mkdir /mnt/boot/EFI
+mount /mnt/boot/EFI $boot_part
+
 pacstrap /mnt ${pacstrap_pkgs[*]} # installs all required packages
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
 cp install.sh /mnt/install.sh
 #cp install-config.cfg /mnt/install-config.cfg
-arch-chroot /mnt /install.sh $boot_part $root_part $root_pass $user $user_pass $hostname
+arch-chroot /mnt /install.sh $root_pass $user $user_pass $hostname
 rm /mnt/install.sh
 #rm /mnt/install-config.cfg
 

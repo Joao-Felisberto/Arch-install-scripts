@@ -29,7 +29,7 @@ pacstrap /mnt ${pacstrap_pkgs[*]} # installs all required packages
 genfstab -U /mnt >> /mnt/etc/fstab
 
 cp install.sh /mnt/install.sh
-arch-chroot /mnt /install.sh $root_pass $user $user_pass $hostname
+arch-chroot /mnt bash /install.sh $root_pass $user $user_pass $hostname
 rm /mnt/install.sh
 
 umount -R /mnt

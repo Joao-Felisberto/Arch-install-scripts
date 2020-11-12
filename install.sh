@@ -1,11 +1,4 @@
-#input="/install-config.cfg"
-#declare -a cfg
-
-#while read line
-#do
-#  cfg += line
-#done < "$input"
-
+#! /bin/bash
 #	1	2	3	4
 #$root_pass $user $user_pass $hostname
 

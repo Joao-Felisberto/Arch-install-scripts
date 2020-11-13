@@ -19,7 +19,7 @@ echo "127.0.0.1	localhost" >> /etc/hosts
 echo "::1		localhost" >> /etc/hosts
 echo "127.0.1.1	$4.localdomain	$4" >> /etc/hosts
 
-echo $1\n$1| passwd
+echo root $1| passwd
 
 useradd -m $2
-echo $3\n$3| passwd
+echo $2 $3| passwd

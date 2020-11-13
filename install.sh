@@ -23,3 +23,6 @@ echo "root:$1" | chpasswd
 
 useradd -m $2
 echo "$2:$3" | chpasswd
+
+grub-install /dev/sda --target=x86_64-efi --efi-directory=/boot
+grub-mkconfig -o /boot/grub/grub.cfg

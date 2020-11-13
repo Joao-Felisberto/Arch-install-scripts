@@ -24,7 +24,7 @@ mkdir /mnt/boot
 mkdir /mnt/boot/EFI
 mount "$boot_part" /mnt/boot/EFI
 
-pacstrap /mnt ${pacstrap_pkgs[*]} # installs all required packages
+pacstrap /mnt ${pacstrap_pkgs[*]} grub efibootmgr # installs all required packages
 
 genfstab -U /mnt >> /mnt/etc/fstab
 

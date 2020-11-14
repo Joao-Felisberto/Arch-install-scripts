@@ -1,7 +1,9 @@
 base
-base-devel
-linux-firmware
 linux-lts
 linux-lts-headers
+virtualbox-guest-additions
+virtualbox-guest-dkms
+neofetch
+htop
 vim
 git

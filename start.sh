@@ -24,7 +24,7 @@ mkdir /mnt/boot
 mkdir /mnt/boot/EFI
 mount "$boot_part" /mnt/boot/EFI
 
-pacstrap /mnt "${cfg[*]} grub efibootmgr" # installs all required packages
+pacstrap /mnt ${cfg[*]} grub efibootmgr # installs all required packages
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
@@ -32,5 +32,5 @@ cp install.sh /mnt/install.sh
 arch-chroot /mnt /bin/bash /install.sh $root_pass $user $user_pass $hostname
 rm /mnt/install.sh
 
-#umount -R /mnt
-#reboot
+umount -R /mnt
+reboot

@@ -1,7 +1,7 @@
 base
 linux-lts
 linux-lts-headers
-virtualbox-guest-additions
+virtualbox-guest-utils
 virtualbox-guest-dkms
 neofetch
 htop

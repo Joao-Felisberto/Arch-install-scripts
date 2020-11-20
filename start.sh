@@ -32,5 +32,5 @@ cp install.sh /mnt/install.sh
 arch-chroot /mnt /bin/bash /install.sh $root_pass $user $user_pass $hostname
 rm /mnt/install.sh
 
-#umount -R /mnt
-#reboot
+umount -R /mnt
+reboot

@@ -1,9 +1,9 @@
 #! /bin/bash
 
-declare -a cfg
+declare -a pkg
 while read ln
 do
-  cfg+="$ln "
+  pkg+="$ln "
 done < "packages.install"
 
 read -p "boot partition name: " boot_part
@@ -24,13 +24,15 @@ mkdir /mnt/boot
 mkdir /mnt/boot/EFI
 mount "$boot_part" /mnt/boot/EFI
 
-pacstrap /mnt ${cfg[*]} grub efibootmgr # installs all required packages
+pacstrap /mnt ${pkg[*]} grub efibootmgr # installs all required packages
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
+cp services.install /mnt/install.sh
 cp install.sh /mnt/install.sh
 arch-chroot /mnt /bin/bash /install.sh $root_pass $user $user_pass $hostname
 rm /mnt/install.sh
+rm /mnt/services.install
 
 umount -R /mnt
 reboot

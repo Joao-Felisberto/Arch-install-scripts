@@ -3,7 +3,7 @@ linux-lts
 linux-lts-headers
 virtualbox-guest-utils
 virtualbox-guest-dkms
+networkmanager
 neofetch
 htop
 vim
-git

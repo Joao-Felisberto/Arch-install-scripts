@@ -28,7 +28,7 @@ pacstrap /mnt ${pkg[*]} grub efibootmgr # installs all required packages
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
-cp services.install /mnt/install.sh
+cp services.install /mnt/services.install
 cp install.sh /mnt/install.sh
 arch-chroot /mnt /bin/bash /install.sh $root_pass $user $user_pass $hostname
 rm /mnt/install.sh

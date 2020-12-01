@@ -27,7 +27,6 @@ echo "$2:$3" | chpasswd
 while read ln
 do
   systemctl enable "$ln"
-  systemctl start "$ln"
 done < "services.install"
 
 grub-install --target=x86_64-efi --efi-directory=/boot/EFI

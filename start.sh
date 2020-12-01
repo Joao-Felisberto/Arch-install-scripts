@@ -15,6 +15,9 @@ read -sp "password for $user: " user_pass
 echo " "
 read -p "hostname: " hostname
 
+# PARA OS DOTFILES
+#https://www.tutorialkart.com/bash-shell-scripting/bash-split-string/
+
 timedatectl set-ntp true
 
 mkfs.ext4 "$root_part"

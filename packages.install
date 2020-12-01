@@ -7,3 +7,14 @@ networkmanager
 neofetch
 htop
 vim
+xorg
+xorg-xinit
+lightdm
+lightdm-gtk-greeter
+i3-gaps
+i3blocks
+i3lock
+nitrogen
+alacritty
+nemo
+firefox

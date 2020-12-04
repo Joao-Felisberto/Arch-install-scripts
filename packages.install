@@ -11,9 +11,7 @@ xorg
 xorg-xinit
 lightdm
 lightdm-gtk-greeter
-i3-gaps
-i3blocks
-i3lock
+qtile
 nitrogen
 alacritty
 nemo

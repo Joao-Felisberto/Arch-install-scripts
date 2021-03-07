@@ -37,5 +37,9 @@ arch-chroot /mnt /bin/bash /install.sh $root_pass $user $user_pass $hostname
 rm /mnt/install.sh
 rm /mnt/services.install
 
+# dotfiles
+git clone https://github.com/Joao-Felisberto/dotfiles.git "/mnt/home/$user/.config"
+cp -r "/mnt/home/$user/.config/stuff/." "/mnt/home/$user/"
+
 umount -R /mnt
 reboot

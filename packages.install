@@ -14,7 +14,7 @@ xorg-xinit
 lightdm
 lightdm-gtk-greeter
 i3-gaps
-i3-lock
+i3lock
 feh
 alacritty
 thunar

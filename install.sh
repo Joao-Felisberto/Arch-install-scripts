@@ -24,19 +24,24 @@ echo "root:$1" | chpasswd
 useradd -m $2
 echo "$2:$3" | chpasswd
 
+usermod --append --groups wheel $2
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+
 if [ -s aur.install ]
 then
-	mkdir -p "/home/$2/Programs/"
+	sudo -u "$2" mkdir -p /home/$2/Programs/
 	cd "/home/$2/Programs/"
-	git clone https://aur.archlinux.org/pikaur.git
+
+	sudo -u "$2" git clone https://aur.archlinux.org/pikaur.git
 	cd pikaur
-	makepkg -fsri
+	sudo -u "$2" makepkg -fsri
 
-	while read ln
-	do
-		pikaur -S "$ln" --no-confirm
-	done < "aur.install"
+	pks=""
+	while read ln; do
+		pks="$pks $ln"	
+	done < "/aur.install"
 
+	sudo -u "$2" pikaur -S $pks --noconfirm
 	cd /
 fi
 
@@ -45,5 +50,12 @@ do
   systemctl enable "$ln"
 done < "services.install"
 
+cd "/home/$2"
+sudo -u "$2" echo ".dotfiles" >> .gitignore
+sudo -u "$2" git clone --bare https://github.com/Joao-Felisberto/dotfiles "$HOME/.dotfiles"
+sudo -u "$2" rm "$HOME/.bashrc" "$HOME/.config/i3/config"
+sudo -u "$2" /usr/bin/git --git-dir="$HOME/.cfg/" --work-tree="$HOME" checkout
+
+cd /
 grub-install --target=x86_64-efi --efi-directory=/boot/EFI
 grub-mkconfig -o /boot/grub/grub.cfg
